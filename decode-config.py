@@ -2996,7 +2996,7 @@ SETTING_14_6_0_1['mbflag2'][1].update({
                                     })
 # ======================================================================
 SETTING_15_0_1_2 = copy.copy(SETTING_14_6_0_1)
-SETTING_15_0_1_2 = {
+SETTING_15_0_1_2.update             ({
     'energy_power_calibration':     (HARDWARE.ESPnP4,'<L',  0x364,       (None, '1000 <= $ <= 32000',           ('Power',       '"PowerCal {}".format($)')) ),
     'energy_voltage_calibration':   (HARDWARE.ESPnP4,'<L',  0x368,       (None, '1000 <= $ <= 32000',           ('Power',       '"VoltageCal {}".format($)')) ),
     'energy_current_calibration':   (HARDWARE.ESPnP4,'<L',  0x36C,       (None, '1000 <= $ <= 32000',           ('Power',       '"CurrentCal {}".format($)')) ),
@@ -3312,7 +3312,7 @@ SETTING_15_0_1_2 = {
                                                      'B',   0x475,       ([4,3],None,                           ('Light',       None)) ),
     'ws_color_esp32p4':             (HARDWARE.ESP32P4,
                                                      'B',   0x478,       ([4,3],None,                           ('Light',       None)) ),
-                                    }
+                                    })
 SETTING_15_0_1_2['user_template_esp32'] = copy.deepcopy(SETTING_14_6_0_1['user_template_esp32'])
 SETTING_15_0_1_2['user_template_esp32'][1].update({
         'gpio':                     (HARDWARE.ESP32 ^ (HARDWARE.ESP32S2 | HARDWARE.ESP32S3 | HARDWARE.ESP32C3 | HARDWARE.ESP32P4),
