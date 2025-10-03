@@ -625,24 +625,25 @@ class Hardware:
     ESPxx configuration data hardware class
     """
     # Bit mask for supported hardware
-    ESP82       = 0b00000001        # All ESP82xx
-    ESP32ex     = 0b00000010        # ESP32 excluding S2-S3/C2-C6/P4
-    ESP82_32ex  = 0b00000011        # ESP82xx + ESP32 excluding ESP32 S2-S3/C2-C6/P4
-    ESP32S3     = 0b00000100        # ESP32S3
-    ESP32S2     = 0b00001000        # ESP32S2
-    ESP32C3     = 0b00010000        # ESP32C3
-    ESP32C2     = 0b00100000        # ESP32C2
-    ESP32C6     = 0b01000000        # ESP32C6
-    ESP32P4     = 0b10000000        # ESP32P4
-    ESPnP4      = 0b01111111        # All ESP excluding ESP32P4
-    ESP32       = 0b11111110        # All ESP32
-    ESP         = 0b11111111        # All ESP
+    ESP82       = 0b000000001       # All ESP82xx
+    ESP32ex     = 0b000000010       # ESP32 excluding S2-S3/C2-C6/P4
+    ESP82_32ex  = 0b000000011       # ESP82xx + ESP32 excluding ESP32 S2-S3/C2-C6/P4
+    ESP32S3     = 0b000000100       # ESP32S3
+    ESP32S2     = 0b000001000       # ESP32S2
+    ESP32C3     = 0b000010000       # ESP32C3
+    ESP32C2     = 0b000100000       # ESP32C2
+    ESP32C6     = 0b001000000       # ESP32C6
+    ESP32P4     = 0b010000000       # ESP32P4
+    ESP32C5     = 0b100000000       # ESP32C5
+    ESPnP4      = 0b101111111       # All ESP excluding ESP32P4
+    ESP32       = 0b111111110       # All ESP32
+    ESP         = 0b111111111       # All ESP
 
     # Hardware bitmask and description
     config = (
         (ESP82,         "ESP82xx"),
-        (ESP32ex,       "ESP32 (excl ESP32-S2/S3/C2/C6/P4)"),
-        (ESP82_32ex,    "ESP82xx/32 (excl ESP32-S2/S3/C2/C6/P4)"),
+        (ESP32ex,       "ESP32 (excl ESP32 S2-S3/C2-C6/P4)"),
+        (ESP82_32ex,    "ESP82xx/32 (excl ESP32 S2-S3/C2-C6/P4)"),
         (ESP32S3,       "ESP32-S3"),
         (ESP32,         "ESP32"),
         (ESP32P4,       "ESP32-P4"),
@@ -650,6 +651,7 @@ class Hardware:
     )
 
     # Tasmota config_version values
+    # Must match the number and order for Settings->config_version in Tasmota settings.ino
     config_versions = (
         ESP82,
         ESP32ex,
@@ -658,17 +660,19 @@ class Hardware:
         ESP32C3,
         ESP32C2,
         ESP32C6,
-        ESP32P4
+        ESP32P4,
+        ESP32C5
         )
     config_versions_str = (
         "ESP82xx",
-        "ESP32 (not S2/S3/C2/C6/P4)",
+        "ESP32 (not S2/S3/C2/C5/C6/P4)",
         "ESP32-S3",
         "ESP32-S2",
         "ESP32-C3",
         "ESP32-C2",
         "ESP32-C6",
         "ESP32-P4",
+        "ESP32-C5"
         )
 
     def get_bitmask(self, config_version):
@@ -3322,10 +3326,25 @@ SETTING_15_0_1_2['user_template_esp32'][1].update({
                                     })
 
 # ======================================================================
-SETTING_15_0_1_5 = copy.deepcopy(SETTING_15_0_1_2)
+SETTING_15_0_1_3 = copy.deepcopy(SETTING_15_0_1_2)
+SETTING_15_0_1_3.update             ({
+    'my_gp_esp32c5':                (HARDWARE.ESP32C5,
+                                                     '<H',  0x3AC,       ([29], None,                           ('Management',  '"Gpio{} {}".format(#, $)')) ),
+                                    })
+SETTING_15_0_1_3['user_template_esp32'][1].update({
+        'base_esp32c5':             (HARDWARE.ESP32C5,
+                                                     'B',   0x71F,       (None, None,                           ('Management',  '"Template {{\\\"NAME\\\":\\\"{}\\\",\\\"GPIO\\\":{},\\\"FLAG\\\":{},\\\"BASE\\\":{}}}".format(@["templatename"],@["user_template_esp32"]["gpio_esp32c5"],@["user_template_esp32"]["flag_esp32c5"],$)')), ('$+1','$-1') ),
+        'gpio_esp32c5':             (HARDWARE.ESP32C5,
+                                                     '<H',  0x3FC,       ([29], None,                           ('Management',  None)), ('1 if $==65504 else $','65504 if $==1 else $')),
+        'flag_esp32c5':             (HARDWARE.ESP32C5,
+                                                     '<H',  0x3FC+(2*29),(None, None,                           ('Management',  None)) ),
+                                    })
+# ======================================================================
+SETTING_15_0_1_5 = copy.deepcopy(SETTING_15_0_1_3)
 # ======================================================================
 SETTINGS = [
             (0x0F000105,0x1000, SETTING_15_0_1_5),
+            (0x0F000103,0x1000, SETTING_15_0_1_3),
             (0x0F000102,0x1000, SETTING_15_0_1_2),
             (0x0E060001,0x1000, SETTING_14_6_0_1),
             (0x0E040104,0x1000, SETTING_14_4_1_4),
