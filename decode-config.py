@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 METADATA = {
-    'VERSION': '15.0.1.5',
+    'VERSION': '15.1.0.0',
     'DESCRIPTION': 'Backup/restore and decode configuration tool for Tasmota',
     'CLASSIFIER': 'Development Status :: 4 - Beta',
     'URL': 'https://github.com/tasmota/decode-config',
@@ -3340,10 +3340,10 @@ SETTING_15_0_1_3['user_template_esp32'][1].update({
                                                      '<H',  0x3FC+(2*29),(None, None,                           ('Management',  None)) ),
                                     })
 # ======================================================================
-SETTING_15_0_1_5 = copy.deepcopy(SETTING_15_0_1_3)
+SETTING_15_1_0_0 = copy.deepcopy(SETTING_15_0_1_3)
 # ======================================================================
 SETTINGS = [
-            (0x0F000105,0x1000, SETTING_15_0_1_5),
+            (0x0F010000,0x1000, SETTING_15_1_0_0),
             (0x0F000103,0x1000, SETTING_15_0_1_3),
             (0x0F000102,0x1000, SETTING_15_0_1_2),
             (0x0E060001,0x1000, SETTING_14_6_0_1),
