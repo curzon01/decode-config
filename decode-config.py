@@ -3341,6 +3341,9 @@ SETTING_15_0_1_3['user_template_esp32'][1].update({
                                     })
 # ======================================================================
 SETTING_15_1_0_1 = copy.deepcopy(SETTING_15_0_1_3)
+SETTING_15_1_0_1['flag6'][1].update ({
+        'tls_use_ecdsa':            (HARDWARE.ESP,   '<L', (0xF74,1,19), (None, None,                           ('SetOption',   '"SO165 {}".format($)')) ),
+                                    })
 # ======================================================================
 SETTINGS = [
             (0x0F010001,0x1000, SETTING_15_1_0_1),
