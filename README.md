@@ -12,19 +12,21 @@ Convert, backup and restore configuration data of devices flashed with [Tasmota 
 ![PyPI downloads](https://img.shields.io/pypi/dm/decode-config?label=pypi%20downloads)
 [![License](https://img.shields.io/github/license/tasmota/decode-config.svg)](LICENSE)
 
+This tool can create readable and editable formats from the configuration data of [Tasmota](https://github.com/arendst/Tasmota), which is originally only available in binary form and protected against changes by a checksum.
+
+Features of **decode-config**:
+
+* read/write directly from online devices (via HTTP or MQTT) or from offline files in binary format.
+* uses a readable and editable [JSON](http://www.json.org/) format for backup/restore.
+* process subsets of configuration data in JSON format.
+* convert data from older Tasmota versions (from version 5.10.0 onwards) to newer versions and vice versa.
+* create a list of [Tasmota commands](https://tasmota.github.io/docs/Commands/#commands-list) for most of the available commands related to configuration data.
+
 If you like **decode-config** give it a star or fork it and contribute:
 
 [![GitHub stars](https://img.shields.io/github/stars/tasmota/decode-config.svg?style=social&label=Star)](https://github.com/tasmota/decode-config/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/tasmota/decode-config.svg?style=social&label=Fork)](https://github.com/tasmota/decode-config/network)
 [![donate](https://img.shields.io/badge/donate-PayPal-blue.svg)](https://paypal.me/NorbertRichterDE)
-
-In comparison with the [Tasmota](https://github.com/arendst/Tasmota) build-in "*Backup Configuration*" / "*Restore Configuration*" function the **decode-config** tool:
-
-* uses a human readable and editable [JSON](http://www.json.org/)-format for backup/restore
-* can restore previously backed up and modified JSON-format files
-* is able to process any subsets of configuration data
-* can convert data from older Tasmota versions (starting with early v5.10.0) to a newer and current one and vice versa
-* is able to create Tasmota command list for the most available configuration data related commands
 
 Comparing backup files created by **decode-config** and [.dmp](#dmp-format) files created by Tasmota "*Backup Configuration*" / "*Restore Configuration*":
 
