@@ -734,7 +734,7 @@ For advanced help use parameter `-H` or `--full-help`.
 <details>
 
   ```help
-  usage: decode-config.py [-s <filename|host|url>] [-p <password>] [--fulltopic <topic>]
+  usage: decode-config.py -s <filename|host|url> [-p <password>] [--fulltopic <topic>]
                           [--cafile <file>] [--certfile <file>] [--keyfile <file>]
                           [--insecure] [--keepalive <sec>] [-i <restorefile>]
                           [-o <backupfile>] [-t json|bin|dmp] [-E] [-e] [-F]
@@ -750,9 +750,10 @@ For advanced help use parameter `-H` or `--full-help`.
     Read/Write Tasmota configuration from/to
 
     -s, --source <filename|host|url>
-                          source used for the Tasmota configuration (default: None).
-                          Specify source type, path, file, user, password, hostname, port
-                          and topic at once as an URL. The URL must be in the form
+                          source used for the Tasmota configuration (default: None), the
+                          source parameter is mandatory. Specify source type, path, file,
+                          user, password, hostname, port and topic at once as an URL.The
+                          URL must be in the form
                           'scheme://[username[:password]@]host[:port][/topic]|pathfile'
                           where 'scheme' is 'file' for a tasmota binary config file,
                           'http' for a Tasmota HTTP web connection and 'mqtt(s)' for
