@@ -7004,12 +7004,13 @@ def parseargs():
                         metavar='<filename|host|url>',
                         dest='source',
                         default=DEFAULTS['source']['source'],
-                        help="source used for the Tasmota configuration (default: {}). "
+                        help="source used for the Tasmota configuration (default: {}), the source parameter is mandatory. "
                         "Specify source type, path, file, user, password, hostname, port and topic at once as an URL. "
                         "The URL must be in the form 'scheme://[username[:password]@]host[:port][/topic]|pathfile' "
                         "where 'scheme' is 'file' for a tasmota binary config file, 'http' for a Tasmota HTTP web connection "
                         "{}".format(DEFAULTS['source']['source'],
-                            "and 'mqtt(s)' for Tasmota MQTT transport ('mqtts' uses a TLS connection to MQTT server)" if MQTT_MODULE else ""))
+                            "and 'mqtt(s)' for Tasmota MQTT transport ('mqtts' uses a TLS connection to MQTT server)" if MQTT_MODULE else ""),
+                        required=True)
     source.add_argument('-f', '--file', dest='filesource', default=DEFAULTS['source']['filesource'], help=configargparse.SUPPRESS)
     source.add_argument('--tasmota-file', dest='filesource', help=configargparse.SUPPRESS)
     source.add_argument('-d', '--device', dest='httpsource', default=DEFAULTS['source']['httpsource'], help=configargparse.SUPPRESS)
