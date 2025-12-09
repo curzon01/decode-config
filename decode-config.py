@@ -3346,6 +3346,9 @@ SETTING_15_1_0_1['flag6'][1].update ({
                                     })
 # ======================================================================
 SETTING_15_1_0_3 = copy.deepcopy(SETTING_15_1_0_1)
+SETTING_15_1_0_3['sbflag1'][1].update({
+        'dali_no_broadcast_slider': (HARDWARE.ESP,   '<L', (0xFA0,1,14), (None, '0 <= $ <= 1',                  ('Light',       '"DaliNoBS {}".format($)')) ),
+                                    })
 # ======================================================================
 SETTINGS = [
             (0x0F010003,0x1000, SETTING_15_1_0_3),
