@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 METADATA = {
-    'VERSION': '15.2.0.1',
+    'VERSION': '15.2.0.2',
     'DESCRIPTION': 'Backup/restore and decode configuration tool for Tasmota',
     'CLASSIFIER': 'Development Status :: 4 - Beta',
     'URL': 'https://github.com/tasmota/decode-config',
@@ -3350,10 +3350,10 @@ SETTING_15_1_0_3['sbflag1'][1].update({
         'dali_no_broadcast_slider': (HARDWARE.ESP,   '<L', (0xFA0,1,14), (None, '0 <= $ <= 1',                  ('Light',       '"DaliNoBS {}".format($)')) ),
                                     })
 # ======================================================================
-SETTING_15_2_0_1 = copy.deepcopy(SETTING_15_1_0_3)
+SETTING_15_2_0_2 = copy.deepcopy(SETTING_15_1_0_3)
 # ======================================================================
 SETTINGS = [
-            (0x0F020001,0x1000, SETTING_15_2_0_1),
+            (0x0F020002,0x1000, SETTING_15_2_0_2),
             (0x0F010003,0x1000, SETTING_15_1_0_3),
             (0x0F010001,0x1000, SETTING_15_1_0_1),
             (0x0F000103,0x1000, SETTING_15_0_1_3),
