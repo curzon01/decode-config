@@ -7018,8 +7018,7 @@ def parseargs():
                         "The URL must be in the form 'scheme://[username[:password]@]host[:port][/topic]|pathfile' "
                         "where 'scheme' is 'file' for a tasmota binary config file, 'http' for a Tasmota HTTP web connection "
                         "{}".format(DEFAULTS['source']['source'],
-                            "and 'mqtt(s)' for Tasmota MQTT transport ('mqtts' uses a TLS connection to MQTT server)" if MQTT_MODULE else ""),
-                        required=True)
+                            "and 'mqtt(s)' for Tasmota MQTT transport ('mqtts' uses a TLS connection to MQTT server)" if MQTT_MODULE else ""))
     source.add_argument('-f', '--file', dest='filesource', default=DEFAULTS['source']['filesource'], help=configargparse.SUPPRESS)
     source.add_argument('--tasmota-file', dest='filesource', help=configargparse.SUPPRESS)
     source.add_argument('-d', '--device', dest='httpsource', default=DEFAULTS['source']['httpsource'], help=configargparse.SUPPRESS)
