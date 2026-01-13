@@ -150,7 +150,6 @@ try:
     import configargparse
     import requests
     import urllib
-    import codecs
     import textwrap
     import hashlib
 except ImportError as err:
@@ -6673,7 +6672,7 @@ def backup(backupfile, backupfileformat, config):
             backupfp.write(struct.pack('<L', BINARYFILE_MAGIC))
     def backup_json(backup_filename, config):
         # do json file write
-        with codecs.open(backup_filename, "w", encoding=STR_CODING) as backupfp:
+        with open(backup_filename, "w", encoding=STR_CODING) as backupfp:
             backupfp.write(get_jsonstr(config['groupmapping'], ARGS.jsonsort, ARGS.jsonindent, ARGS.jsoncompact))
 
     backups = {
@@ -6782,7 +6781,7 @@ def restore(restorefile, backupfileformat, config):
         if ARGS.verbose:
             log(msg="Reading restore file '{}' (JSON format)".format(restorefilename), type_=LogType.INFO)
         try:
-            with codecs.open(restorefilename, "r", encoding=STR_CODING) as restorefp:
+            with open(restorefilename, "r", encoding=STR_CODING) as restorefp:
                 jsonconfig = json.load(restorefp)
         except ValueError as err:
             log(ExitCode.JSON_READ_ERROR, "File '{}' invalid JSON: {}".format(restorefilename, err), line=inspect.getlineno(inspect.currentframe()))
