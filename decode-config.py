@@ -3350,6 +3350,9 @@ SETTING_15_1_0_3['sbflag1'][1].update({
                                     })
 # ======================================================================
 SETTING_15_2_0_6 = copy.deepcopy(SETTING_15_1_0_3)
+SETTING_15_2_0_6.update              ({
+    'i2c_drivers2':                 (HARDWARE.ESP,   '<L',  0xF64,       ([2],  None,                           ('Management',  'list("I2CDriver{} {}".format((#*32)+i+96, 1 if (int($,0) & (1<<i)) else 0) for i in range(0, 32))')),'"0x{:08x}".format($)' ),
+                                    })
 # ======================================================================
 SETTINGS = [
             (0x0F020006,0x1000, SETTING_15_2_0_6),
