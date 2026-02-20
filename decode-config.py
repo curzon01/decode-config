@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 METADATA = {
-    'VERSION': '15.2.0.0',
+    'VERSION': '15.3.0.0',
     'DESCRIPTION': 'Backup/restore and decode configuration tool for Tasmota',
     'CLASSIFIER': 'Development Status :: 5 - Production/Stable',
     'URL': 'https://github.com/tasmota/decode-config',
@@ -150,7 +150,6 @@ try:
     import configargparse
     import requests
     import urllib
-    import codecs
     import textwrap
     import hashlib
 except ImportError as err:
@@ -3350,10 +3349,16 @@ SETTING_15_1_0_3['sbflag1'][1].update({
         'dali_no_broadcast_slider': (HARDWARE.ESP,   '<L', (0xFA0,1,14), (None, '0 <= $ <= 1',                  ('Light',       '"DaliNoBS {}".format($)')) ),
                                     })
 # ======================================================================
-SETTING_15_2_0_0 = copy.deepcopy(SETTING_15_1_0_3)
+SETTING_15_2_0_6 = copy.deepcopy(SETTING_15_1_0_3)
+SETTING_15_2_0_6.update              ({
+    'i2c_drivers2':                 (HARDWARE.ESP,   '<L',  0xF64,       ([2],  None,                           ('Management',  'list("I2CDriver{} {}".format((#*32)+i+96, 1 if (int($,0) & (1<<i)) else 0) for i in range(0, 32))')),'"0x{:08x}".format($)' ),
+                                    })
+# ======================================================================
+SETTING_15_3_0_0 = copy.deepcopy(SETTING_15_2_0_6)
 # ======================================================================
 SETTINGS = [
-            (0x0F020000,0x1000, SETTING_15_2_0_0),
+            (0x0F030000,0x1000, SETTING_15_3_0_0),
+            (0x0F020006,0x1000, SETTING_15_2_0_6),
             (0x0F010003,0x1000, SETTING_15_1_0_3),
             (0x0F010001,0x1000, SETTING_15_1_0_1),
             (0x0F000103,0x1000, SETTING_15_0_1_3),
@@ -6673,7 +6678,7 @@ def backup(backupfile, backupfileformat, config):
             backupfp.write(struct.pack('<L', BINARYFILE_MAGIC))
     def backup_json(backup_filename, config):
         # do json file write
-        with codecs.open(backup_filename, "w", encoding=STR_CODING) as backupfp:
+        with open(backup_filename, "w", encoding=STR_CODING) as backupfp:
             backupfp.write(get_jsonstr(config['groupmapping'], ARGS.jsonsort, ARGS.jsonindent, ARGS.jsoncompact))
 
     backups = {
@@ -6782,7 +6787,7 @@ def restore(restorefile, backupfileformat, config):
         if ARGS.verbose:
             log(msg="Reading restore file '{}' (JSON format)".format(restorefilename), type_=LogType.INFO)
         try:
-            with codecs.open(restorefilename, "r", encoding=STR_CODING) as restorefp:
+            with open(restorefilename, "r", encoding=STR_CODING) as restorefp:
                 jsonconfig = json.load(restorefp)
         except ValueError as err:
             log(ExitCode.JSON_READ_ERROR, "File '{}' invalid JSON: {}".format(restorefilename, err), line=inspect.getlineno(inspect.currentframe()))
