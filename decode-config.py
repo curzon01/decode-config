@@ -1253,7 +1253,7 @@ SETTING_6_6_0_2['flag3'][1].update  ({
         'buzzer_enable':            (HARDWARE.ESP,   '<L', (0x3A0,1,17), (None, None,                           ('SetOption',   '"SetOption67 {}".format($)')) ),
                                     })
 SETTING_6_6_0_2.update              ({
-    'display_model':                (HARDWARE.ESP,   'B',   0x2D2,       (None, '0 <= $ <= 16',                 ('Display',     '"DisplayModel {}".format($)')) ),
+    'display_model':                (HARDWARE.ESP,   'B',   0x2D2,       (None, '0 <= $ <= 32',                 ('Display',     '"DisplayModel {}".format($)')) ),
     'display_mode':                 (HARDWARE.ESP,   'B',   0x2D3,       (None, '0 <= $ <= 5',                  ('Display',     '"DisplayMode {}".format($)')) ),
     'display_refresh':              (HARDWARE.ESP,   'B',   0x2D4,       (None, '1 <= $ <= 7',                  ('Display',     '"DisplayRefresh {}".format($)')) ),
     'display_rows':                 (HARDWARE.ESP,   'B',   0x2D5,       (None, '1 <= $ <= 32',                 ('Display',     '"DisplayRows {}".format($)')) ),
