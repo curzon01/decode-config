@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 METADATA = {
-    'VERSION': '15.3.0.0',
+    'VERSION': '15.4.0.0',
     'DESCRIPTION': 'Backup/restore and decode configuration tool for Tasmota',
     'CLASSIFIER': 'Development Status :: 5 - Production/Stable',
     'URL': 'https://github.com/tasmota/decode-config',
@@ -1253,7 +1253,7 @@ SETTING_6_6_0_2['flag3'][1].update  ({
         'buzzer_enable':            (HARDWARE.ESP,   '<L', (0x3A0,1,17), (None, None,                           ('SetOption',   '"SetOption67 {}".format($)')) ),
                                     })
 SETTING_6_6_0_2.update              ({
-    'display_model':                (HARDWARE.ESP,   'B',   0x2D2,       (None, '0 <= $ <= 16',                 ('Display',     '"DisplayModel {}".format($)')) ),
+    'display_model':                (HARDWARE.ESP,   'B',   0x2D2,       (None, '0 <= $ <= 32',                 ('Display',     '"DisplayModel {}".format($)')) ),
     'display_mode':                 (HARDWARE.ESP,   'B',   0x2D3,       (None, '0 <= $ <= 5',                  ('Display',     '"DisplayMode {}".format($)')) ),
     'display_refresh':              (HARDWARE.ESP,   'B',   0x2D4,       (None, '1 <= $ <= 7',                  ('Display',     '"DisplayRefresh {}".format($)')) ),
     'display_rows':                 (HARDWARE.ESP,   'B',   0x2D5,       (None, '1 <= $ <= 32',                 ('Display',     '"DisplayRows {}".format($)')) ),
@@ -3354,10 +3354,10 @@ SETTING_15_2_0_6.update              ({
     'i2c_drivers2':                 (HARDWARE.ESP,   '<L',  0xF64,       ([2],  None,                           ('Management',  'list("I2CDriver{} {}".format((#*32)+i+96, 1 if (int($,0) & (1<<i)) else 0) for i in range(0, 32))')),'"0x{:08x}".format($)' ),
                                     })
 # ======================================================================
-SETTING_15_3_0_0 = copy.deepcopy(SETTING_15_2_0_6)
+SETTING_15_4_0_0 = copy.deepcopy(SETTING_15_2_0_6)
 # ======================================================================
 SETTINGS = [
-            (0x0F030000,0x1000, SETTING_15_3_0_0),
+            (0x0F040000,0x1000, SETTING_15_4_0_0),
             (0x0F020006,0x1000, SETTING_15_2_0_6),
             (0x0F010003,0x1000, SETTING_15_1_0_3),
             (0x0F010001,0x1000, SETTING_15_1_0_1),
