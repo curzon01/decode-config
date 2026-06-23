@@ -7,7 +7,7 @@ METADATA = {
     'CLASSIFIER': 'Development Status :: 5 - Production/Stable',
     'URL': 'https://github.com/tasmota/decode-config',
     'AUTHOR': 'Norbert Richter',
-    'AUTHOR_EMAIL': 'nr@prsolution.eu',
+    'AUTHOR_EMAIL': 'pypi.org@ricno.de',
 }
 
 """
